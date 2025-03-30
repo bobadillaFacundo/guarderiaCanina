@@ -29,12 +29,12 @@ document.getElementById('formCAS').addEventListener('submit', async function (ev
         }
 
         // Obtener el token de la respuesta
-        const { token } = await response.json()
+        const { token, idUsuario } = await response.json()
 
         // Guardar el token en el localStorage
         localStorage.setItem('token', token)
         localStorage.setItem('email', email)
-
+        localStorage.setItem('idUsuario', idUsuario)
         //definir una cookies
         document.cookie = `token=${token}; max-age=3600; path=/; secure ; samesite=none`
         // Redireccionar a la nueva página

@@ -28,7 +28,7 @@ export const loginUsuario = async (req, res) => {
         }
 
         const token = generarToken({ id: user._id, email: user.email }, process.env.JWT, '1h')
-        res.json({ token })
+        res.json({ token, idUsuario: user._id })
     } catch (error) {
         console.error(`Error en el login: ${error}`)
         res.status(500).json({ message: 'Error en el servidor' })

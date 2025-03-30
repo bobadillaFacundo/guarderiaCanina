@@ -1,9 +1,10 @@
 import express from "express";
-import { crearTipo } from "../controller/controllerTipo.js";
+import { crearTipo, menuCrearTipo } from "../controller/controllerTipo.js";
 
 
 const router = express.Router();
 
+router.get('/', menuCrearTipo)
 router.post('/', crearTipo)
 
 

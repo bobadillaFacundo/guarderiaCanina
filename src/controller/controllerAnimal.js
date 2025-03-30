@@ -1,8 +1,17 @@
-import mongoose from "mongoose";
-import animalesModel from "../model/animal.js";
-import tipoAnimalModel from "../model/tipoAnimal.js";
-import usuariosModel from "../model/usuario.js";
-import { populate } from "dotenv";
+import mongoose from "mongoose"
+import animalesModel from "../model/animal.js"
+import tipoAnimalModel from "../model/tipoAnimal.js"
+import usuariosModel from "../model/usuario.js"
+
+export const menuCrearAnimal = async (req, res) => {
+    try {
+        const animalesTipos = await tipoAnimalModel.find().select("-animales")
+        
+        return res.render('crearAnimal',{animalesTipos})
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 export const todosLosAnimales = async (req, res) => {
     try {
@@ -14,39 +23,6 @@ export const todosLosAnimales = async (req, res) => {
     } catch (error) {
         console.error('Error al obtener los animales:', error);
         res.status(500).send('Error al obtener los animales');
-    }
-}
-
-
-// Crear un nuevo animal
-export const crearAnimal = async (req, res) => {
-    try {
-        let { nombre, idUsuario, idTipoAnimal } = req.body
-
-        const usuarioId = new mongoose.Types.ObjectId(idUsuario)
-        const tipoAnimalId = new mongoose.Types.ObjectId(idTipoAnimal)
-
-        const nuevoAnimal = new animalesModel({
-            nombre, idUsuario, idTipoAnimal
-        })
-
-        // Guardar el nuevo animal en la base de datos
-        const animalGuardado = await nuevoAnimal.save()
-
-        // Actualizar el usuario y el tipo de animal con el ID del nuevo animal
-        await usuariosModel.updateOne(
-            { _id: usuarioId },
-            { $push: { animales: animalGuardado._id } }
-        )
-
-        await tipoAnimalModel.updateOne(
-            { _id: tipoAnimalId },
-            { $push: { animales: animalGuardado._id } }
-        )
-
-        res.status(201).json(animalGuardado)
-    } catch (error) {
-        res.status(400).json({ error: error.message })
     }
 }
 
@@ -72,13 +48,31 @@ export const busquedaAnimal = async (req, res) => {
             select: 'nombre animales',      // El modelo de la referencia
             populate: { path: 'idTipoAnimal', select: 'tipo' }
         })
-    
-        console.log(usuarios)
-        
+            
     res.render('busquedaAnimal', { animales, usuarios  })
 
     } catch (error) {
         res.status(404).json({ error: error.message })
 
     }
+}
+
+export const registrarMascota = async (req, res) => {
+    try {
+        const { mascota } = req.body
+        console.log(mascota);
+        
+        const nuevoAnimal = new animalesModel({
+            nombre: mascota.nombre,
+            idUsuario: new mongoose.Types.ObjectId(mascota.idUsuario),
+            idTipoAnimal: new mongoose.Types.ObjectId(mascota.tipo),
+            adopcion: mascota.adopcion,
+            enLaGuarderia: false
+        })        
+        const result = await nuevoAnimal.save()
+        res.status(201).json({result})
+    }catch(error){
+        console.log(error)
+    }
+
 }
