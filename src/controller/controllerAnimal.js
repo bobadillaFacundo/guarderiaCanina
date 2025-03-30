@@ -8,7 +8,7 @@ export const todosLosAnimales = async (req, res) => {
     try {
         const animales = await animalesModel.find()
             .populate('idTipoAnimal', 'tipo') // Trae solo el campo tipo del idTipoAnimal
-            .populate('idUsuario', 'nombre mail'); // Trae los campos nombre y mail del idUsuario
+            .populate('idUsuario', 'nombre email'); // Trae los campos nombre y email del idUsuario
 
         res.render('listaAnimales', { animales });
     } catch (error) {

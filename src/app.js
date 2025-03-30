@@ -9,6 +9,9 @@ import tipoAnimalesModel from './router/tipos.router.js';
 import cookieParser from 'cookie-parser';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import  loginModel from './router/login.router.js'
+import authMiddleware from './middlewares/authMiddleware.js'
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -45,9 +48,10 @@ app.engine('handlebars', engine({
   }
 }));
 // Rutas
-app.use('/api/animales', animalRoutes);
-app.use('/api/usuarios', usuariosModel);
-app.use('/api/tipos', tipoAnimalesModel);
+app.use('/api/animales',authMiddleware, animalRoutes);
+app.use('/api/usuarios',usuariosModel);
+app.use('/api/tipos',authMiddleware, tipoAnimalesModel);
+app.use('/api/login', loginModel)
 
 // Conexión a MongoDB
 mongoose

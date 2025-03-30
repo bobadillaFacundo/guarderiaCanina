@@ -19,7 +19,7 @@
             <h5 class="card-title"><i class="fas fa-paw"></i> Animal: {{nombre}}</h5>
             <!-- Accediendo a las propiedades de idUsuario y idTipoAnimal -->
             <p><strong>Nombre dueño:</strong> {{idUsuario.nombre}}</p>
-            <p><strong>Mail:</strong> {{idUsuario.mail}}</p>
+            <p><strong>Mail:</strong> {{idUsuario.email}}</p>
             <p><strong>Tipo Animal:</strong> {{idTipoAnimal.tipo}}</p>
         </div>
         {{/each}}
@@ -28,7 +28,7 @@
         {{#each usuarios}}
         <div class="card p-4 mb-3 shadow-sm">
             <h5 class="card-title"><i class="fas fa-paw"></i> Usuario: {{nombre}}</h5>
-            <p><strong>Mail:</strong> {{mail}}</p>
+            <p><strong>Mail:</strong> {{email}}</p>
             <!-- Aquí podrías agregar animales si están relacionados con el usuario -->
             {{#each animales}}
             <h5 class="card-title"><i class="fas fa-paw"></i> Animal: {{nombre}}</h5>
@@ -46,7 +46,7 @@
         {{/unless}}
 
     </section>
-
+    <script src="/js/busquedaAnimal.js"></script>
 </body>
 
 </html>
