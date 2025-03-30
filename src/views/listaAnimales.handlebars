@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Animales</title>
+</head>
+
+<body class="container mt-5">
+
+    <!-- Contenedor principal -->
+    <div class="main-container">
+        <!-- Sección de Buscar -->
+        <div class="search-section card p-4 mb-4 shadow-sm">
+            <h2 class="text-center">Buscar por Nombre</h2>
+            <form id="buscarNombreAnimal" class="d-flex flex-column align-items-center">
+                <label for="buscarNombreAnimal" class="form-label">Nombre del Animal o Dueño:</label>
+                <input type="text" id="nombreDelAnimal" name="nombreAnimal" class="form-control w-50" placeholder="Nombre del animal">
+                <button type="submit" class="btn btn-primary mt-3 btn-buscarNombreAnimal">Buscar</button>
+            </form>
+        </div>
+
+        <!-- Sección de animales -->
+        <section class="libros-section">
+            {{#each animales}}
+            <div class="card p-4 mb-3 shadow-sm">
+                <h5 class="card-title"><i class="fas fa-paw"></i> Animal: {{nombre}}</h5>
+                <p><strong>Nombre dueño:</strong> {{idUsuario.nombre}}</p>
+                <p><strong>Mail:</strong> {{idUsuario.mail}}</p>
+                <p><strong>Tipo Animal:</strong> {{idTipoAnimal.tipo}}</p>
+            </div>
+            {{/each}}
+        </section>
+    </div>
+
+    <script src="/js/listaAnimales.js"></script>
+</body>
+
+</html>

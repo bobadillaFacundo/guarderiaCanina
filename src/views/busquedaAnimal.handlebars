@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado de la búsqueda</title>
+</head>
+
+<body class="container mt-5">
+
+    <h3><i class="fas fa-paw"></i> Animales</h3>
+    <!-- Sección de animales -->
+    <section class="libros-section">
+        {{#if animales.length}}
+        <!-- Si hay animales, mostrar información de ellos -->
+        {{#each animales}}
+        <div class="card p-4 mb-3 shadow-sm">
+            <h5 class="card-title"><i class="fas fa-paw"></i> Animal: {{nombre}}</h5>
+            <!-- Accediendo a las propiedades de idUsuario y idTipoAnimal -->
+            <p><strong>Nombre dueño:</strong> {{idUsuario.nombre}}</p>
+            <p><strong>Mail:</strong> {{idUsuario.mail}}</p>
+            <p><strong>Tipo Animal:</strong> {{idTipoAnimal.tipo}}</p>
+        </div>
+        {{/each}}
+        {{else}}
+        <!-- Si no hay animales, mostrar los usuarios -->
+        {{#each usuarios}}
+        <div class="card p-4 mb-3 shadow-sm">
+            <h5 class="card-title"><i class="fas fa-paw"></i> Usuario: {{nombre}}</h5>
+            <p><strong>Mail:</strong> {{mail}}</p>
+            <!-- Aquí podrías agregar animales si están relacionados con el usuario -->
+            {{#each animales}}
+            <h5 class="card-title"><i class="fas fa-paw"></i> Animal: {{nombre}}</h5>
+            <p><strong>Tipo Animal:</strong> {{idTipoAnimal.tipo}}</p>
+            {{/each}}
+        </div>
+        {{/each}}
+        {{/if}}
+
+        <!-- Si no hay ni animales ni usuarios -->
+        {{#unless animales.length}}
+        {{#unless usuarios.length}}
+        <p>No se encontraron resultados.</p>
+        {{/unless}}
+        {{/unless}}
+
+    </section>
+
+</body>
+
+</html>
