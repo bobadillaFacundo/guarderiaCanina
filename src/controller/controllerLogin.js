@@ -50,3 +50,11 @@ export const crearUsuario = ((req, res) => {
         console.log(error)
     }
 })
+
+export const principal = ((req, res) => {
+    try {
+        return res.render('viewPrincipal')
+    } catch (error) {
+        console.log(error)
+    }
+})

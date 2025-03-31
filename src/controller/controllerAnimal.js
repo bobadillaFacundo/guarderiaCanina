@@ -40,15 +40,16 @@ export const busquedaAnimal = async (req, res) => {
             select: 'nombre',     // Campos que deseas que se muestren de idUsuario
         })
 
-        // Buscar usuarios que coincidan con el nombre
         const usuarios = await usuariosModel.find({ nombre: { $regex: nombreAnimal, $options: 'i' } })
-        .populate({
-            path: 'animales',    // Campo que quieres poblar
-            ref: 'animal', 
-            select: 'nombre animales',      // El modelo de la referencia
-            populate: { path: 'idTipoAnimal', select: 'tipo' }
-        })
-            
+    .populate({
+        path: 'animales',    // Campo en usuarios que almacena la referencia
+        populate: {
+            path: 'idTipoAnimal', // Este debe ser un ObjectId que referencia a otro modelo
+            select: 'tipo'        // Selecciona solo el campo "tipo"
+        }
+    })
+    console.log(usuarios);
+    
     res.render('busquedaAnimal', { animales, usuarios  })
 
     } catch (error) {
@@ -59,20 +60,35 @@ export const busquedaAnimal = async (req, res) => {
 
 export const registrarMascota = async (req, res) => {
     try {
-        const { mascota } = req.body
-        console.log(mascota);
-        
+        const { mascota } = req.body        
         const nuevoAnimal = new animalesModel({
             nombre: mascota.nombre,
             idUsuario: new mongoose.Types.ObjectId(mascota.idUsuario),
             idTipoAnimal: new mongoose.Types.ObjectId(mascota.tipo),
             adopcion: mascota.adopcion,
             enLaGuarderia: false
-        })        
-        const result = await nuevoAnimal.save()
+        }) 
+        const result = await nuevoAnimal.save() 
+        await usuariosModel.updateOne({ _id: result.idUsuario }, { $push: { animales: result._id } })
+        await tipoAnimalModel.updateOne({ _id: result.idTipoAnimal}, { $push: { animales: result._id } })   
+        console.log(result);
+        
         res.status(201).json({result})
     }catch(error){
         console.log(error)
     }
 
+}
+
+export const todasLasMascotasAdopcion = async (req, res) => {
+    try {
+        const mascotas = await animalesModel.find({adopcion: true})
+            .populate('idTipoAnimal', 'tipo'). // Trae solo el campo tipo del idTipoAnimal
+            populate('idUsuario', 'nombre email'); // Trae los campos nombre y email del idUsuario
+        
+        res.render('viewAdopciones', { mascotas })
+    } catch (error) {
+        console.error('Error al obtener las mascotas:', error);
+        res.status(500).send('Error al obtener las mascotas');
+    }
 }

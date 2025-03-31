@@ -21,3 +21,15 @@ export const menuCrearTipo = ('/', async (req, res) => {
         console.log(error)
     }
 })
+
+
+export const listadoTipos = ('/', async (req, res) => {  
+    try {
+        const tipos = await tipoAnimalModel.find()
+        res.render('listadoTipos', {tipos})
+    } catch (error) {
+        console.log(error)  
+        res.status(400).json({ error: error.message })   
+    }
+    }   
+)

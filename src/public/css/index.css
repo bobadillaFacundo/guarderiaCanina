@@ -1,0 +1,69 @@
+/* Ajuste del navbar */
+.navbar {
+    border-bottom: 2px solid #ddd;
+}
+
+/* Botones de navegación */
+.navbar .btn {
+    min-width: 120px;
+}
+
+/* Cartel de sección */
+.alert-primary {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Carrusel */
+.carousel {
+    margin-top: 20px;
+}
+
+/* Ficha de mascota */
+.card {
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.card img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 3px solid #ddd;
+}
+
+/* Controles del carrusel */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    padding: 10px;
+}
+
+/* Ajustar el tamaño del contenedor */
+.container {
+    max-width: 800px;
+}
+
+body {
+    background-image: url('https://via.placeholder.com/1200x800?text=Mascotas+Generadas+por+IA');
+    background-size: cover;
+    background-position: center;
+}
+.tab-content {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+body {
+    background-image: url('https://via.placeholder.com/1200x800?text=Mascotas+Generadas+por+IA');
+    background-size: cover;
+    background-position: center;
+}
+.tab-content {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+}

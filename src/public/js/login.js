@@ -38,7 +38,7 @@ document.getElementById('formCAS').addEventListener('submit', async function (ev
         //definir una cookies
         document.cookie = `token=${token}; max-age=3600; path=/; secure ; samesite=none`
         // Redireccionar a la nueva página
-        window.location.href = `/api/animales/`
+        window.location.href = "/api/login/principal/"
 
     } catch (err) {
         console.log('Error al realizar la solicitud:', err)
