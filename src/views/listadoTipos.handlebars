@@ -12,7 +12,7 @@
 
     <!-- Contenedor principal -->
     <div class="main-container">
-        
+
         <!-- Sección de Tipos de Animales -->
         <section class="tipos-animales-section mb-4">
             <h3>Tipos de Animales Disponibles</h3>
@@ -20,20 +20,11 @@
                 {{#each tiposAnimales}}
                 <li class="list-group-item">{{tipo}}</li>
                 {{/each}}
+
             </ul>
+        </ul>
         </section>
-        
-        <!-- Sección de Animales -->
-        <section class="animales-section">
-            {{#each animales}}
-            <div class="card p-4 mb-3 shadow-sm">
-                <h5 class="card-title"><i class="fas fa-paw"></i> Animal: {{nombre}}</h5>
-                <p><strong>Nombre dueño:</strong> {{idUsuario.nombre}}</p>
-                <p><strong>Mail:</strong> {{idUsuario.email}}</p>
-                <p><strong>Tipo Animal:</strong> {{idTipoAnimal.tipo}}</p>
-            </div>
-            {{/each}}
-        </section>
+
     </div>
 
     <script src="/js/listadoTipos.js"></script>

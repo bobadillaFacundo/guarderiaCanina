@@ -17,7 +17,7 @@ export const crearUsuario = async (req, res) => {
             email: usuario.username,
             password: bcrypt.hashSync(usuario.password, 10),
             animales: [],
-            recervas: [],
+            reservas: [],
             tipoUsuario: "comun",
         })
         nuevoUsuario.save()

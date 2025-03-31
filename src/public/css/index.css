@@ -67,3 +67,60 @@ body {
     padding: 20px;
     border-radius: 10px;
 }
+
+#reservaModal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    z-index: 99999; /* Asegura que el modal esté por encima */
+    width: 300px;
+    text-align: center;
+  }
+  
+  /* Evita que el modal sea afectado por elementos transparentes */
+  #reservaModal * {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+  
+  /* Asegura que el calendario no tape el modal */
+  .fc {
+    position: relative;
+    z-index: 1;
+  }
+  #reservaModal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    z-index: 99999; /* Asegura que el modal esté sobre el calendario */
+    width: 350px;
+    text-align: center;
+    opacity: 1 !important; /* Evita transparencia */
+    pointer-events: auto !important; /* Asegura interacción */
+  }
+  
+  /* Evita que FullCalendar bloquee el modal */
+  .fc {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .fc-view-harness {
+    position: relative;
+    z-index: 1;
+  }
+  .modal {
+    z-index: 1050; /* Asegúrate de que sea mayor que otros elementos */
+  }

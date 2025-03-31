@@ -11,6 +11,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import  loginModel from './router/login.router.js'
 import authMiddleware from './middlewares/authMiddleware.js'
+import reservasModel from './router/reservas.router.js'
+import Cronofy from "cronofy"
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -19,7 +21,11 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 dotenv.config();
-
+const cronofyClient = new Cronofy({
+  client_id: process.env.CLIENT_ID,
+  client_secret: process.env.CLIENT_SECRET,
+  data_center: process.env.DATA_CENTER
+})
 // Configuración CORS
 app.use(
   cors({
@@ -48,10 +54,11 @@ app.engine('handlebars', engine({
   }
 }));
 // Rutas
-app.use('/api/animales',authMiddleware, animalRoutes);
-app.use('/api/usuarios',usuariosModel);
-app.use('/api/tipos',authMiddleware, tipoAnimalesModel);
+app.use('/api/animales',authMiddleware, animalRoutes)
+app.use('/api/usuarios',usuariosModel)
+app.use('/api/tipos',authMiddleware, tipoAnimalesModel)
 app.use('/api/login', loginModel)
+app.use('/api/reservas', authMiddleware, reservasModel)
 
 // Conexión a MongoDB
 mongoose

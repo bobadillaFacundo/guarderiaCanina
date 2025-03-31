@@ -6,7 +6,7 @@ const usuarioSchema = mongoose.Schema({
     email: {type: String, required: true, unique: true},
     password: {type: String, required:true},
     animales: [{ type : mongoose.Schema.Types.ObjectId, ref: 'animal' }],
-    recervas: [{ type: mongoose.Schema.ObjectId, ref: 'recerva'}],
+    reservas: [{ type: mongoose.Schema.ObjectId, ref: 'recerva'}],
     tipoUsuario: {type: String, required: true}
 })
 usuarioSchema.plugin(mongoosePaginate)

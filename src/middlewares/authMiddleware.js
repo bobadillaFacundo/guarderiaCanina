@@ -6,7 +6,8 @@ const authMiddleware = (req, res, next) => {
     const token = req.cookies['token']
     
     if (!token) {
-        return res.status(401).json({ message: 'Acceso denegado. Token no proporcionado.' })
+        //return res.status(401).json({ message: 'Acceso denegado. Token no proporcionado.' })
+        return res.redirect('/api/login')
     }
 
     try {
@@ -14,7 +15,8 @@ const authMiddleware = (req, res, next) => {
         req.user = decoded // Agrega los datos del usuario al request
         next() // Continúa con la siguiente función en la ruta
     } catch (error) {
-        return res.status(403).json({ message: 'Token inválido o expirado.' })
+        return res.redirect('/api/login')
+        //return res.status(403).json({ message: 'Token inválido o expirado.' })
     }
 }
 

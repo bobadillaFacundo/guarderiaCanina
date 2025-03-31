@@ -26,7 +26,7 @@ export const menuCrearTipo = ('/', async (req, res) => {
 export const listadoTipos = ('/', async (req, res) => {  
     try {
         const tipos = await tipoAnimalModel.find()
-        res.render('listadoTipos', {tipos})
+        res.render('listadoTipos', {tiposAnimales: tipos})
     } catch (error) {
         console.log(error)  
         res.status(400).json({ error: error.message })   
