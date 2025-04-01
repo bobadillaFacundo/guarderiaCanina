@@ -1,28 +1,3 @@
-/* Navbar */
-/* Eliminar bordes y contornos de todos los botones */
-button, .nav-link, .dropdown-btn {
-  border: none; /* Elimina el borde */
-  outline: none; /* Elimina el contorno */
-  background: none; /* Elimina el fondo */
-  padding: 10px 15px; /* Ajusta el padding según sea necesario */
-  cursor: pointer; /* Mantiene el puntero del ratón sobre los botones */
-  transition: background 0.3s, color 0.3s; /* Suaviza la transición de fondo y color */
-}
-
-/* Efecto al pasar el cursor sobre los botones */
-button:hover, .nav-link:hover, .dropdown-btn:hover {
-  background-color: #f8f9fa; /* Fondo suave al pasar el cursor */
-  color: #007bff; /* Cambia el color del texto si lo deseas */
-  border-radius: 5px; /* Bordes redondeados */
-}
-
-/* Efecto al hacer click o al hacer focus en los botones */
-button:focus, .nav-link:focus, .dropdown-btn:focus,
-button:active, .nav-link:active, .dropdown-btn:active {
-  background-color: #e9ecef; /* Fondo diferente al hacer click */
-  color: #007bff; /* Color del texto */
-  outline: none; /* Elimina el borde de enfoque */
-}
 
 /* Navbar */
 .navbar {
@@ -49,6 +24,7 @@ button:active, .nav-link:active, .dropdown-btn:active {
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 50%;
   padding: 10px;
+  display: none;
 }
 
 /* Contenedor principal */
@@ -275,4 +251,24 @@ footer {
   .container {
     max-width: 100%; /* Asegura que el contenido se ajuste a pantallas pequeñas */
   }
+}
+button, .nav-link, .dropdown-btn, .carousel {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+button:hover, .nav-link:hover, .dropdown-btn:hover, 
+button:focus, .nav-link:focus, .dropdown-btn:focus,
+button:active, .nav-link:active, .dropdown-btn:active,
+.carousel:hover, .carousel:focus, .carousel:active ,.carousel-control-prev-icon, .carousel-control-next-icon {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.carousel:focus,
+.carousel *:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
