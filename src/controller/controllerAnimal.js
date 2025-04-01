@@ -6,8 +6,8 @@ import usuariosModel from "../model/usuario.js"
 export const menuCrearAnimal = async (req, res) => {
     try {
         const animalesTipos = await tipoAnimalModel.find().select("-animales")
-        
-        return res.render('crearAnimal',{animalesTipos})
+        const {tipo} = req.params
+        return res.render('crearAnimal',{animalesTipos, tipoUsuario: tipo })
     } catch (error) {
         console.log(error)
     }
@@ -30,7 +30,7 @@ export const todosLosAnimales = async (req, res) => {
 
 export const busquedaAnimal = async (req, res) => {
     try {
-        const { nombreAnimal } = req.params
+        const { nombreAnimal, tipo } = req.params
         // Buscar animales que coincidan con el nombre
         const animales = await animalesModel.find({ nombre: { $regex: nombreAnimal, $options: 'i' } })
         .populate({
@@ -50,7 +50,6 @@ export const busquedaAnimal = async (req, res) => {
             select: 'tipo'        // Selecciona solo el campo "tipo"
         }
     })
-    const {tipo} = req.params
 
     res.render('busquedaAnimal', { animales, usuarios, tipoUsuario: tipo   })
 

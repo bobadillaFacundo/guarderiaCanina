@@ -44,9 +44,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("btnPerfil").addEventListener("click", function () {
         const idPerfil = localStorage.getItem("idUsuario");
+        const tipoUsuario = localStorage.getItem('tipoUsuario')
+        const result = {
+            id: idPerfil,
+            tipo: tipoUsuario
+        }
         if (idPerfil) {
-            window.location.href = `/api/usuarios/perfil/${idPerfil}/`;
-        } else {
+            window.location.href = `/api/usuarios/perfil/${idPerfil}/${tipoUsuario}`      
+          } else {
             console.warn("No hay ID de usuario en el localStorage.");
         }
     });

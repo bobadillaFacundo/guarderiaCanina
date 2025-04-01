@@ -32,7 +32,9 @@ export const crearUsuario = async (req, res) => {
 export const traerPerfilUsuario = async (req, res) => {
     try {
 
-    const { id } = req.params
+    const { id, tipo } = req.params
+
+
     
     const usuario = await usuariosModel.findById(new mongoose.Types.ObjectId(id))
     .populate({
@@ -42,7 +44,6 @@ export const traerPerfilUsuario = async (req, res) => {
             select: 'tipo'
         }
     })
-    const {tipo} = req.params
 
     res.render('viewPerfilUsuario', { usuario, tipoUsuario: tipo })
     } catch (error) {

@@ -9,8 +9,9 @@ document.querySelector('#buscarNombreAnimal').addEventListener('submit', async (
             return;
         }
 
+        const tipo = localStorage.getItem('tipoUsuario')
         // Redirige al backend para obtener los resultados
-        window.location.href = `/api/animales/busqueda/${nombreAnimal}`;
+        window.location.href = `/api/animales/busqueda/${nombreAnimal}/${tipo}`;
 
     } catch (error) {
         console.log(error);

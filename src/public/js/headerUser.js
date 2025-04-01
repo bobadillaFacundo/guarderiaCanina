@@ -33,19 +33,21 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     document.getElementById("btnAnimales").addEventListener("click", function () {
-        window.location.href = "/api/animales/";
+        const tipoUsuario = localStorage.getItem('tipoUsuario')
+        window.location.href = `/api/animales/${tipoUsuario}/`;
     });
 
 
 
     document.getElementById("btnPerfil").addEventListener("click", function () {
         const idPerfil = localStorage.getItem("idUsuario");
-        if (idPerfil) {
-            window.location.href = `/api/usuarios/perfil/${idPerfil}/`;
-        } else {
-            console.warn("No hay ID de usuario en el localStorage.");
+        const tipoUsuario = localStorage.getItem('tipoUsuario')
+        const result = {
+            id: idPerfil,
+            tipo: tipoUsuario
         }
-    });
+        window.location.href = `/api/usuarios/perfil/${idPerfil}/${tipoUsuario}`
+        });
 
 
     document.getElementById("btnCerrarSesion").addEventListener("click", function () {
