@@ -5,7 +5,7 @@ Tecnologias y configuracion del env. :
 <br>
         BDD: mongoDB (crear cuenta y obtener el token que te pide el .env, MONGO_URI)
 <br>
-        Backend as a Service (BaaS): supabase (para las fotos), hay que crear cuenta y proyecto y obtner el token para el .env (SUPABASE_KEY)
+        Backend as a Service (BaaS): supabase (para las fotos), hay que crear cuenta y proyecto y obtner el token para el .env (SUPABASE_KEY y SUPABSE_URL)
 <br>
         FrontEnd: Handlebars, boostrap
 <br>
