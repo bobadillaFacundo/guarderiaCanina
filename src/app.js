@@ -51,7 +51,8 @@ app.engine('handlebars', engine({
   runtimeOptions: {
       allowProtoPropertiesByDefault: true, // Permite acceso a propiedades heredadas
       allowProtoMethodsByDefault: true,    // Permite acceso a métodos heredados
-  }
+  }, layoutsDir: path.join(__dirname, 'views/layouts'), // Ruta correcta de layouts
+  partialsDir: path.join(__dirname, 'views/partials') // Ruta correcta de parciales
 }));
 // Rutas
 app.use('/api/animales',authMiddleware, animalRoutes)

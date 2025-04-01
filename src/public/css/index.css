@@ -1,126 +1,224 @@
-/* Ajuste del navbar */
+/* Navbar */
 .navbar {
-    border-bottom: 2px solid #ddd;
+  border-bottom: 2px solid #ddd;
 }
 
-/* Botones de navegación */
 .navbar .btn {
-    min-width: 120px;
+  min-width: 120px;
 }
 
-/* Cartel de sección */
+/* Alertas */
 .alert-primary {
-    font-size: 1.5rem;
-    font-weight: bold;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 /* Carrusel */
 .carousel {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
-/* Ficha de mascota */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  padding: 10px;
+}
+
+/* Contenedor principal */
+.container {
+  max-width: 800px;
+}
+
+/* Tarjetas */
 .card {
-    padding: 20px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
 
 .card img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border: 3px solid #ddd;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border: 3px solid #ddd;
 }
 
-/* Controles del carrusel */
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 50%;
-    padding: 10px;
-}
-
-/* Ajustar el tamaño del contenedor */
-.container {
-    max-width: 800px;
-}
-
-body {
-    background-image: url('https://via.placeholder.com/1200x800?text=Mascotas+Generadas+por+IA');
-    background-size: cover;
-    background-position: center;
-}
+/* Tabs */
 .tab-content {
-    background: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-    border-radius: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
 }
 
-body {
-    background-image: url('https://via.placeholder.com/1200x800?text=Mascotas+Generadas+por+IA');
-    background-size: cover;
-    background-position: center;
-}
-.tab-content {
-    background: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-    border-radius: 10px;
-}
-
+/* Modal */
 #reservaModal {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-    border-radius: 5px;
-    z-index: 99999; /* Asegura que el modal esté por encima */
-    width: 300px;
-    text-align: center;
-  }
-  
-  /* Evita que el modal sea afectado por elementos transparentes */
-  #reservaModal * {
-    opacity: 1 !important;
-    pointer-events: auto !important;
-  }
-  
-  /* Asegura que el calendario no tape el modal */
-  .fc {
-    position: relative;
-    z-index: 1;
-  }
-  #reservaModal {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-    border-radius: 5px;
-    z-index: 99999; /* Asegura que el modal esté sobre el calendario */
-    width: 350px;
-    text-align: center;
-    opacity: 1 !important; /* Evita transparencia */
-    pointer-events: auto !important; /* Asegura interacción */
-  }
-  
-  /* Evita que FullCalendar bloquee el modal */
-  .fc {
-    position: relative;
-    z-index: 1;
-  }
-  
-  .fc-view-harness {
-    position: relative;
-    z-index: 1;
-  }
-  .modal {
-    z-index: 1050; /* Asegúrate de que sea mayor que otros elementos */
-  }
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  z-index: 1050;
+  width: 350px;
+  text-align: center;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.modal {
+  z-index: 1050;
+}
+
+/* Ajuste de calendario y modal */
+.fc, .fc-view-harness {
+  position: relative;
+  z-index: 1;
+}
+
+/* Fondo */
+.fondo {
+  width: 40%;
+  height: 70vh;
+  background: url('../image/fondo.png') center/contain no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  margin: auto;
+  text-shadow: none;
+}
+
+/* Eliminar bordes generales */
+* {
+  border: none;
+}
+
+/* Dropdown */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn, .nav-link {
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 150px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  z-index: 10; /* Ajuste para evitar problemas de superposición */
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 10px 15px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content.show {
+  display: block;
+}
+
+/* Asegurar interactividad de los botones */
+.nav-link {
+  user-select: none;
+  pointer-events: auto;
+}
+header {
+  display: flex;
+  justify-content: center; /* Centra el contenido horizontalmente */
+  align-items: center; /* Centra el contenido verticalmente */
+  text-align: center;
+  width: 100%; /* Asegura que ocupe el ancho completo */
+}
+
+.nav {
+  display: flex;
+  justify-content: center; /* Centra los elementos dentro del nav */
+  gap: 15px; /* Espaciado entre los elementos */
+}
+/* Asegura que el body ocupe toda la pantalla */
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hace que el header tenga un tamaño fijo */
+header {
+  flex: 0 0 60px; /* Altura fija de 60px */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f9fa; /* O el color que prefieras */
+  border-bottom: 2px solid #ddd;
+}
+
+/* Hace que el contenido ocupe el espacio restante */
+.main-content {
+  flex: 1; /* Hace que el contenido ocupe todo el espacio disponible */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Ajusta el footer para que se mantenga abajo */
+footer {
+  flex: 0 0 50px; /* Altura fija del footer */
+  text-align: center;
+  background-color: #f8f9fa;
+  border-top: 2px solid #ddd;
+  padding: 10px;
+}
+/* Estilos para el modal */
+#reservaModal {
+  display: none; /* Oculto por defecto */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  width: 350px; /* Ajuste opcional del ancho */
+  max-width: 90%; /* Evita que sea demasiado ancho en pantallas pequeñas */
+  text-align: center;
+  z-index: 1050; /* Asegura que esté sobre otros elementos */
+}
+
+/* Fondo oscurecido cuando el modal está activo */
+.modal-overlay {
+  display: none; /* Oculto por defecto */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Efecto de oscurecimiento */
+  z-index: 1049; /* Debajo del modal */
+}
+
+/* Clase para mostrar el modal */
+.show-modal {
+  display: block !important;
+}

@@ -6,10 +6,4 @@ document.addEventListener("DOMContentLoaded", function () {
         pause: "hover" // Pausar el carrusel cuando el mouse está encima
     });
 
-    // Opcional: agregar eventos a los botones de navegación si es necesario
-    document.querySelectorAll(".navbar .btn").forEach(button => {
-        button.addEventListener("click", function () {
-            alert(`Navegando a ${this.innerText}`);
-        });
-    });
 });

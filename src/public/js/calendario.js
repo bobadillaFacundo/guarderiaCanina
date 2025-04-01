@@ -17,7 +17,14 @@ document.addEventListener('DOMContentLoaded', async function () {
     const calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
         selectable: true,
-        editable: true,
+        editable: false,
+        contentHeight: 500, // Ajusta la altura
+        headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        },
+    aspectRatio: 1, // Reduce el tamaño general
         // Abrir modal al seleccionar una fecha
         select: function (info) {
             selectedInfo = info; // Guardamos la info de la selección
@@ -29,18 +36,22 @@ document.addEventListener('DOMContentLoaded', async function () {
         // Eliminar una reserva
         eventClick: async function (info) {
             if (confirm(`¿Eliminar la reserva "${info.event.title}"?`)) {
-                const res = await fetch(`/api/reservas/${info.event.id}`, {
+                const id = info.event.title.match(/\d+[a-zA-Z]+|\d+/g).join('')
+                              
+                const res = await fetch(`/api/reservas/${id}`, {
                     method: 'DELETE'
                 });
                 if (res.ok) {
-                    info.event.remove();
+                    info.event.remove()
+                    location.reload()
+
                 } else {
-                    alert("Error al eliminar la reserva.");
+                    alert("Error al eliminar la reserva.")
                 }
             }
         }
-    });
-    const storedEvents = await fetchReservas();
+    })
+    const storedEvents = await fetchReservas()
     storedEvents.reservas.forEach(startStr => {
       calendar.addEvent({
           title: `Reserva: ${startStr._id}`,  // Usar el título que prefieras

@@ -16,10 +16,14 @@ export const calendario = (async(req, res) => {
 
 // Obtener todas las reservas
 export const reservas =  async (req, res) => {
-    const reservas = await reservasModel.find().select("fecha_desde fecha_hasta id_animal id_usuario").populate("id_animal").select("nombre").populate("id_usuario").select("nombre")
-    console.log(reservas);
-    
-    res.json({reservas});
+    const reservas = await reservasModel.find()
+    .select("fecha_desde fecha_hasta id_animal id_usuario")
+    .populate("id_animal")
+    .select("nombre")
+    .populate("id_usuario")
+    .select("nombre")    
+
+    res.json({reservas})
 }
 
 // Crear una nueva reserva
@@ -40,4 +44,15 @@ export const guardarReserva = async (req, res) => {
     })
     await nuevaReserva.save()
     res.json(nuevaReserva)
+}
+
+export const eliminarReserva = async (req, res) => {
+    try {
+    const {id} = req.params
+    const id_obj = new moongose.Types.ObjectId(id)
+    await reservasModel.findByIdAndDelete(id_obj)
+    res.json({message:"Reserva eliminada"})
+    } catch (error) {
+        console.log(error)
+    }
 }
