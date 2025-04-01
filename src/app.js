@@ -14,6 +14,7 @@ import authMiddleware from './middlewares/authMiddleware.js'
 import reservasModel from './router/reservas.router.js'
 import Cronofy from "cronofy"
 import { createClient } from '@supabase/supabase-js'
+import handlebars from 'handlebars'
 
 
 
@@ -60,6 +61,7 @@ app.engine('handlebars', engine({
   }, layoutsDir: path.join(__dirname, 'views/layouts'), // Ruta correcta de layouts
   partialsDir: path.join(__dirname, 'views/partials') // Ruta correcta de parciales
 }));
+handlebars.registerHelper("eq", (a, b) => a === b)
 // Rutas
 app.use('/api/animales',authMiddleware, animalRoutes)
 app.use('/api/usuarios',usuariosModel)

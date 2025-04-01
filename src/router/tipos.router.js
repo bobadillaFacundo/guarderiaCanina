@@ -3,9 +3,9 @@ import { crearTipo,listadoTipos, menuCrearTipo } from "../controller/controllerT
 
 const router = express.Router();
 
-router.get('/', menuCrearTipo)
+router.get('/:tipo', menuCrearTipo)
 router.post('/',crearTipo)
-router.get('/listado', listadoTipos)
+router.get('/listado/:tipo', listadoTipos)
 
 
 export default router

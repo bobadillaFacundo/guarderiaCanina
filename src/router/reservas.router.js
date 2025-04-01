@@ -3,7 +3,7 @@ import { calendario, guardarReserva, reservas,eliminarReserva } from "../control
 
 const router = express.Router();
 
-router.get('/calendario', calendario)
+router.get('/calendario/:tipo', calendario)
 router.get('/reservas', reservas)
 router.post('/guardarReserva', guardarReserva)
 router.delete('/:id',eliminarReserva)

@@ -24,5 +24,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //recuperar boton evento
 document.querySelector(".buttonLoginUsuario").addEventListener("click", async () =>{
-    window.location.href = `/api/login/principal/`
+    const tipoUsuario = localStorage.getItem('tipoUsuario')
+    window.location.href = `/api/login/principal/${tipoUsuario}`
 })

@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("btnCrearAnimales").addEventListener("click", function () {
         try {
-            const tipoUsuario = localStorage.getItem('tipoUsuario')
+            const tipoUsuario = localStorage.getItem('tipoUsuario');
             window.location.href = `/api/animales/altaAnimal/${tipoUsuario}/`
         } catch (error) {
             console.error("Error al redirigir:", error);
@@ -33,14 +33,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     document.getElementById("btnAnimales").addEventListener("click", function () {
-        const tipoUsuario = localStorage.getItem('tipoUsuario')
-        window.location.href = `/api/animales/${tipoUsuario}/`
+        window.location.href = "/api/animales/";
     });
 
-    document.getElementById("btnTipos").addEventListener("click", function () {
-        const tipoUsuario = localStorage.getItem('tipoUsuario')
-        window.location.href = `/api/tipos/listado/${tipoUsuario}/`
-    });
+
 
     document.getElementById("btnPerfil").addEventListener("click", function () {
         const idPerfil = localStorage.getItem("idUsuario");
@@ -51,18 +47,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    document.getElementById("btnCrearTipos").addEventListener("click", function () {
-        const tipoUsuario = localStorage.getItem('tipoUsuario')
-        window.location.href = `/api/tipos/${tipoUsuario}/`
-    });
 
     document.getElementById("btnCerrarSesion").addEventListener("click", function () {
-        localStorage.removeItem('token')
-        localStorage.removeItem('email')
-        localStorage.removeItem('idUsuario')
-        localStorage.removeItem('tipoUsuario')
         document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-        
+        localStorage.clear()
         window.location.href = "/api/login/"
     })  
     

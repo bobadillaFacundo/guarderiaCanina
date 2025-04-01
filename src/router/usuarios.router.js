@@ -7,7 +7,7 @@ const router = express.Router();
 
 
 router.post('/', crearUsuario)
-router.get('/principal',authMiddeleware,principal)
+router.get('/principal/:tipo',authMiddeleware,principal)
 router.route('/perfil/:id').get(authMiddeleware,traerPerfilUsuario)
 
 export default router

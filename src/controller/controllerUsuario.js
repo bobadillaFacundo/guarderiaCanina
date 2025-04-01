@@ -33,7 +33,6 @@ export const traerPerfilUsuario = async (req, res) => {
     try {
 
     const { id } = req.params
-    console.log(id);
     
     const usuario = await usuariosModel.findById(new mongoose.Types.ObjectId(id))
     .populate({
@@ -43,7 +42,9 @@ export const traerPerfilUsuario = async (req, res) => {
             select: 'tipo'
         }
     })
-    res.render('viewPerfilUsuario', { usuario })
+    const {tipo} = req.params
+
+    res.render('viewPerfilUsuario', { usuario, tipoUsuario: tipo })
     } catch (error) {
         console.log(error)
     }
@@ -51,7 +52,8 @@ export const traerPerfilUsuario = async (req, res) => {
 
 export const principal = async (req, res) => {
     try {
-        res.render('viewPrincipal')
+        const {tipo} = req.params
+        res.render('viewPrincipal',{tipoUsuario:tipo })
         }
     catch (error) {
         console.log(error)

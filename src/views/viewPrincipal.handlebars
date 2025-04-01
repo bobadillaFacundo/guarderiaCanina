@@ -2,7 +2,11 @@
 <html lang="es">
 
 {{> head}}
-{{> header}}
+{{#if (eq tipoUsuario 'admin')}}
+{{> headerAdmin}} 
+{{else}}
+{{> headerUser}}
+{{/if}}
 <body >
 <div class="fondo">
 </div>

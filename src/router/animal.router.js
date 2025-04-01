@@ -4,10 +4,10 @@ import { registrarMascota, todosLosAnimales, busquedaAnimal, menuCrearAnimal,tod
 const router = express.Router();
 
 
-router.get('/', todosLosAnimales)
-router.get('/altaAnimal', menuCrearAnimal)
-router.get('/adopcionAnimal', todasLasMascotasAdopcion)
-router.post('/registrarMascota', registrarMascota)
+router.get('/:tipo', todosLosAnimales)
+router.get('/altaAnimal:tipo', menuCrearAnimal)
+router.get('/adopcionAnimal/:tipo', todasLasMascotasAdopcion)
+router.post('/registrarMascota/:tipo', registrarMascota)
 router.route('/busqueda/:nombreAnimal').get(busquedaAnimal)
 
 export default router

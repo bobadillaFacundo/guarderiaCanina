@@ -19,7 +19,9 @@ export const todosLosAnimales = async (req, res) => {
             .populate('idTipoAnimal', 'tipo') // Trae solo el campo tipo del idTipoAnimal
             .populate('idUsuario', 'nombre email'); // Trae los campos nombre y email del idUsuario
 
-        res.render('listaAnimales', { animales });
+            const {tipo} = req.params
+
+        res.render('listaAnimales', { animales, tipoUsuario: tipo });
     } catch (error) {
         console.error('Error al obtener los animales:', error);
         res.status(500).send('Error al obtener los animales');
@@ -48,9 +50,9 @@ export const busquedaAnimal = async (req, res) => {
             select: 'tipo'        // Selecciona solo el campo "tipo"
         }
     })
-    console.log(usuarios);
-    
-    res.render('busquedaAnimal', { animales, usuarios  })
+    const {tipo} = req.params
+
+    res.render('busquedaAnimal', { animales, usuarios, tipoUsuario: tipo   })
 
     } catch (error) {
         res.status(404).json({ error: error.message })
@@ -71,7 +73,6 @@ export const registrarMascota = async (req, res) => {
         const result = await nuevoAnimal.save() 
         await usuariosModel.updateOne({ _id: result.idUsuario }, { $push: { animales: result._id } })
         await tipoAnimalModel.updateOne({ _id: result.idTipoAnimal}, { $push: { animales: result._id } })   
-        console.log(result);
         
         res.status(201).json({result})
     }catch(error){
@@ -85,8 +86,9 @@ export const todasLasMascotasAdopcion = async (req, res) => {
         const mascotas = await animalesModel.find({adopcion: true})
             .populate('idTipoAnimal', 'tipo'). // Trae solo el campo tipo del idTipoAnimal
             populate('idUsuario', 'nombre email'); // Trae los campos nombre y email del idUsuario
-        
-        res.render('viewAdopciones', { mascotas })
+            const {tipo} = req.params
+
+        res.render('viewAdopciones', { mascotas, tipoUsuario: tipo  })
     } catch (error) {
         console.error('Error al obtener las mascotas:', error);
         res.status(500).send('Error al obtener las mascotas');

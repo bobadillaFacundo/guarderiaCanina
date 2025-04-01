@@ -2,7 +2,12 @@
 <html lang="es">
 
 {{> head}}
-{{> header}}
+
+{{#if (eq tipoUsuario 'admin')}}
+{{> headerAdmin}} 
+{{else}}
+{{> headerUser}}
+{{/if}}
 <body class="container mt-5">
 
     <!-- Contenedor principal -->

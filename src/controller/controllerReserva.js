@@ -7,7 +7,9 @@ export const calendario = (async(req, res) => {
     try {
         const {id} = req.params
         const animales = await animalesModel.find(id).populate('idTipoAnimal', 'tipo')        
-        return res.render('calendario',{animales:animales})
+        const {tipo} = req.params
+
+        return res.render('calendario',{animales:animales, tipoUsuario:tipo})
     } catch (error) {
         console.log(error)
     }
@@ -30,7 +32,6 @@ export const reservas =  async (req, res) => {
 export const guardarReserva = async (req, res) => {
     const reserva = req.body.newEvent
     
-    console.log(reserva);
 
     const nuevaReserva = new  reservasModel({
             fecha_desde:reserva.fecha_desde,
