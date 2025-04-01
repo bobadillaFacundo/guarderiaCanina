@@ -22,7 +22,8 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("btnReservar").addEventListener("click", function () {
         try {
             const tipoUsuario = localStorage.getItem('tipoUsuario')
-            window.location.href = `/api/reservas/calendario/${tipoUsuario}/`
+            const idUsuario = localStorage.getItem("idUsuario");
+            window.location.href = `/api/reservas/calendario/${idUsuario}/${tipoUsuario}/`
         } catch (error) {
             console.error("Error al redirigir:", error);
         }

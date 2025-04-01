@@ -6,9 +6,13 @@ import animalesModel from "../model/animal.js"
 export const calendario = (async(req, res) => {
     try {
         const {id} = req.params
-        const animales = await animalesModel.find(id).populate('idTipoAnimal', 'tipo')        
         const {tipo} = req.params
-
+        let animales = null
+        if(tipo==="admin"){
+             animales = await animalesModel.find().populate('idTipoAnimal', 'tipo')            
+        } else {
+             animales = await animalesModel.find({idUsuario:id}).populate('idTipoAnimal', 'tipo')        
+        }
         return res.render('calendario',{animales:animales, tipoUsuario:tipo})
     } catch (error) {
         console.log(error)
@@ -18,13 +22,29 @@ export const calendario = (async(req, res) => {
 
 // Obtener todas las reservas
 export const reservas =  async (req, res) => {
-    const reservas = await reservasModel.find()
+    const tipo = req.params.tipo
+    const id =req.params.id
+    let reservas  = null
+    if(tipo==="admin"){
+    reservas = await reservasModel.find()
     .select("fecha_desde fecha_hasta id_animal id_usuario")
     .populate("id_animal")
     .select("nombre")
     .populate("id_usuario")
     .select("nombre")    
-
+    }else{
+     reservas = await reservasModel
+    .find({ id_usuario: id }) // Filtrar por id_usuario
+    .select("fecha_desde fecha_hasta id_animal id_usuario")
+    .populate({
+        path: "id_animal",
+        select: "nombre"
+    })
+    .populate({
+        path: "id_usuario",
+        select: "nombre"
+    })    
+    }
     res.json({reservas})
 }
 

@@ -8,7 +8,9 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     // Cargar eventos desde la API
     const fetchReservas = async () => {
-        const res = await fetch('/api/reservas/reservas');
+        const id = localStorage.getItem('idUsuario')
+        const tipo = localStorage.getItem('tipoUsuario')
+        const res = await fetch(`/api/reservas/reservas/${id}/${tipo}/`);
         return await res.json();
     };
 
