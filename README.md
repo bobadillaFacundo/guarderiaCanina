@@ -1,9 +1,20 @@
 # guarderia de Mascotas, tambien publicitar si estan en adopcion o no
 Tecnologias: 
-        Backend: Node.js, exprees, moongose
-        BDD: mongoDB
+<br>
+        Backend: Node.js, exprees, moongose (en .env PORT colocar el puerto)
+<br>
+        BDD: mongoDB (crear cuenta y obtener el token que te pide el .env, MONGO_URI)
+<br>
         Backend as a Service (BaaS): supabase (para las fotos)
+<br>
         FrontEnd: Handlebars, boostrap
-        Para el calendario: https://www.cronofy.com/ (crear cuenta y obtener los tokens que te pide el .env)
-        Tambien se uso JSON Web Token (JWT) por lo que hay que ingresar un token en .env
+<br>
+        Para el calendario: https://www.cronofy.com/ (crear cuenta y obtener los tokens que te pide el .env, CLIENT_ID,
+CLIENT_SECRET,
+ACCESS_TOKEN,
+DATA_CENTER)
+<br>
+        Se uso JSON Web Token (JWT) por lo que hay que ingresar un token en .env (JWT)
+<br>
+        Se uso CORS (Cross-Origin Resource Sharing) por lo que hay que colocar el token en .env (FRONTEND_URL)
         
