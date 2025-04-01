@@ -1,11 +1,20 @@
+{{> head}}
 <header>
-<div class="container mt-4">
+    <div class="container mt-4">
         <ul class="nav nav-tabs" id="myTabs">
+            <!-- Logo e inicio a la izquierda -->
+            <li class="nav-item" id="logo">
+                <a class="nav-link" id="btnIniciarSesion"> <img src="/image/fondo.png" alt="Logo">
+                </a>
+            </li>
+
+            <!-- Resto de los botones -->
             <li class="nav-item"><a class="nav-link" id="btnAdopciones">Adopciones</a></li>
             <li class="nav-item"><a class="nav-link" id="btnReservar">Reservar</a></li>
             <li class="nav-item"><a class="nav-link" id="btnPaquetes">Paquetes</a></li>
             <li class="nav-item"><a class="nav-link" id="btnPerfil">Perfil</a></li>
-               <!-- Dropdown para más opciones -->
+
+            <!-- Dropdown para más opciones -->
             <li class="nav-item dropdown">
                 <a class="nav-link dropbtn">Tipos de Animales</a>
                 <div class="dropdown-content">
@@ -20,7 +29,6 @@
                     <a href="#" id="btnCrearAnimales">Crear Animal</a>
                 </div>
             </li>
-            <li class="nav-item"><a class="nav-link" id="btnIniciarSesion">Inicio</a></li>
         </ul>
     </div>
 </header>

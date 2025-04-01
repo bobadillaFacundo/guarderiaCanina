@@ -13,6 +13,9 @@ import  loginModel from './router/login.router.js'
 import authMiddleware from './middlewares/authMiddleware.js'
 import reservasModel from './router/reservas.router.js'
 import Cronofy from "cronofy"
+import { createClient } from '@supabase/supabase-js'
+
+
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -30,10 +33,13 @@ const cronofyClient = new Cronofy({
 app.use(
   cors({
     origin: process.env.FRONTEND_URL, // Ajusta esto
-    credentials: true,
+    credentials: true
   })
 );
-
+//supabase
+const supabaseUrl = process.env.SUPABSE_URL
+const supabaseKey = process.env.SUPABASE_KEY
+const supabase = createClient(supabaseUrl, supabaseKey)
 // Configuración de directorio estático
 app.use(express.static(path.join(__dirname, 'public')));
 

@@ -1,4 +1,30 @@
 /* Navbar */
+/* Eliminar bordes y contornos de todos los botones */
+button, .nav-link, .dropdown-btn {
+  border: none; /* Elimina el borde */
+  outline: none; /* Elimina el contorno */
+  background: none; /* Elimina el fondo */
+  padding: 10px 15px; /* Ajusta el padding según sea necesario */
+  cursor: pointer; /* Mantiene el puntero del ratón sobre los botones */
+  transition: background 0.3s, color 0.3s; /* Suaviza la transición de fondo y color */
+}
+
+/* Efecto al pasar el cursor sobre los botones */
+button:hover, .nav-link:hover, .dropdown-btn:hover {
+  background-color: #f8f9fa; /* Fondo suave al pasar el cursor */
+  color: #007bff; /* Cambia el color del texto si lo deseas */
+  border-radius: 5px; /* Bordes redondeados */
+}
+
+/* Efecto al hacer click o al hacer focus en los botones */
+button:focus, .nav-link:focus, .dropdown-btn:focus,
+button:active, .nav-link:active, .dropdown-btn:active {
+  background-color: #e9ecef; /* Fondo diferente al hacer click */
+  color: #007bff; /* Color del texto */
+  outline: none; /* Elimina el borde de enfoque */
+}
+
+/* Navbar */
 .navbar {
   border-bottom: 2px solid #ddd;
 }
@@ -141,6 +167,8 @@
   user-select: none;
   pointer-events: auto;
 }
+
+/* Header */
 header {
   display: flex;
   justify-content: center; /* Centra el contenido horizontalmente */
@@ -154,6 +182,7 @@ header {
   justify-content: center; /* Centra los elementos dentro del nav */
   gap: 15px; /* Espaciado entre los elementos */
 }
+
 /* Asegura que el body ocupe toda la pantalla */
 html, body {
   height: 100%;
@@ -189,6 +218,7 @@ footer {
   border-top: 2px solid #ddd;
   padding: 10px;
 }
+
 /* Estilos para el modal */
 #reservaModal {
   display: none; /* Oculto por defecto */
@@ -221,4 +251,28 @@ footer {
 /* Clase para mostrar el modal */
 .show-modal {
   display: block !important;
+}
+
+#myTabs {
+  display: flex;
+  justify-content: flex-start; /* Alinea todo a la izquierda */
+}
+
+#logo {
+  display: flex;
+  align-items: center;
+}
+
+#logo img {
+  margin-right: 10px; /* Espacio entre el logo y el botón */
+}
+@media (max-width: 768px) {
+  .navbar .nav {
+    flex-direction: column; /* Coloca los elementos en una columna */
+    gap: 10px;
+  }
+
+  .container {
+    max-width: 100%; /* Asegura que el contenido se ajuste a pantallas pequeñas */
+  }
 }
