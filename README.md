@@ -1,5 +1,5 @@
 # guarderia de Mascotas, tambien publicitar si estan en adopcion o no
-Tecnologias: 
+Tecnologias y configuracion del env. :
 <br>
         Backend: Node.js, exprees, moongose (en .env PORT colocar el puerto)
 <br>
