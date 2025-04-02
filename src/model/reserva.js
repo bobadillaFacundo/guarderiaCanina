@@ -10,7 +10,8 @@ const recervaSchema = mongoose.Schema({
     medicamento:{type:String},
     alimento:{type:String},
     extras:{type:String},
-    id_puntuacionUsuario: {type:mongoose.Schema.Types.ObjectId, ref: 'puntuacionsUsuario'}
+    id_puntuacionUsuario: {type:mongoose.Schema.Types.ObjectId, ref: 'puntuacionsUsuario'},
+    isPagada: {type: Boolean, default: false}
 })
 
 recervaSchema.plugin(mongoosePaginate)

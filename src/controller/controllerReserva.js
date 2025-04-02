@@ -61,7 +61,8 @@ export const guardarReserva = async (req, res) => {
             id_animal:reserva.id_animal,
             medicamento:reserva.medicamento,
             alimento:reserva.alimento,
-            extras:reserva.extras
+            extras:reserva.extras,
+            isPagada:false
     })
     await nuevaReserva.save()
     res.json(nuevaReserva)

@@ -36,16 +36,29 @@ document.getElementById('formC').addEventListener('submit', async function (even
         }
 
         // Obtener el token de la respuesta
-        const { token } = await data.json()
+        const { token, idUsuario, tipoUsuario } = await data.json()
 
-        // Guardar el token en el localStorage
+        if (localStorage.getItem('token') != null) {
+            localStorage.removeItem('token')
+        }
+        if (localStorage.getItem('email') != null) {
+            localStorage.removeItem('email')
+        }
+        if (localStorage.getItem('tipoUsuario') != null) {
+            localStorage.removeItem('tipoUsuario')
+        }
+        if (localStorage.getItem('idUsuario') != null) {
+            localStorage.removeItem('idUsuario')
+        }
+
         localStorage.setItem('token', token)
-        localStorage.setItem('email', usuario)
+        localStorage.setItem('tipoUsuario', tipoUsuario)
+        localStorage.setItem('idUsuario', idUsuario)
 
         //definir una cookies
         document.cookie = `token=${token}; max-age=3600; path=/; secure ; samesite=none`
         // Redireccionar a la nueva página
-        window.location.href = `/api/login/principal/`
+        window.location.href = `/api/login/principal/${tipoUsuario}/`
 
     } catch (err) {
         console.log('Error al realizar la solicitud:', err)

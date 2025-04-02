@@ -8,10 +8,7 @@ const form = document.getElementById("formCrearMascota");
         const nombre = document.getElementById("nombre").value
         const adopcion = document.getElementById("adopcion").checked
 
-        if (!nombre) {
-            alert("Por favor, ingresa el nombre de la mascota.");
-            return;
-        }
+        
         const tipo = document.getElementById("tipo").value
         const idUsuario = localStorage.getItem('idUsuario')
         
@@ -41,6 +38,7 @@ const form = document.getElementById("formCrearMascota");
         
     }catch (error) {
         console.error(error);
+        alert('Mascota registrada sin exito')
     }   
     })
 })

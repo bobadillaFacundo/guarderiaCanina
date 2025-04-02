@@ -5,13 +5,20 @@ import bcrypt from 'bcryptjs'
 
 // Función para crear un usuario
 export const crearUsuario = async (req, res) => {
-    const usuario = req.body
+    const usuario = req.body;
 
     if (!usuario.username || !usuario.password || !usuario.nombre) {
-        return res.status(400).json({ message: 'Campos vacios' })
+        return res.status(400).json({ message: 'Campos vacíos' });
     }
 
     try {
+        // Verificar si el usuario ya existe
+        const usuarioExistente = await usuariosModel.findOne({ email: usuario.username });
+        if (usuarioExistente) {
+            return res.status(400).json({ message: 'El email ya está registrado' });
+        }
+
+        // Crear nuevo usuario
         const nuevoUsuario = new usuariosModel({
             nombre: usuario.nombre,
             email: usuario.username,
@@ -19,14 +26,21 @@ export const crearUsuario = async (req, res) => {
             animales: [],
             reservas: [],
             tipoUsuario: "comun",
-        })
-        nuevoUsuario.save()
-        res.json({nuevoUsuario})
+        });
+
+        await nuevoUsuario.save(); // Guardar en MongoDB
+
+        res.json({ nuevoUsuario });
     } catch (error) {
-        console.error(`Error al insertar documento, ${error}`)
-        res.status(500).json({ message: 'Error al crear el usuario' })
+        // Si el error es por clave duplicada (E11000)
+        if (error.code === 11000) {
+            return res.status(400).json({ message: 'El email ya está registrado' });
+        }
+        console.error(`Error al insertar documento: ${error}`);
+        res.status(500).json({ message: 'Error al crear el usuario' });
     }
-}
+};
+
 
 
 export const traerPerfilUsuario = async (req, res) => {

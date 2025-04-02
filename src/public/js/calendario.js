@@ -123,17 +123,21 @@ document.addEventListener('DOMContentLoaded', async function () {
             const eliminarBtn = document.createElement('button');
             eliminarBtn.textContent = 'Eliminar';
             eliminarBtn.onclick = async function () {
-                if (confirm(`¿Eliminar la reserva de "${info.event.title}"?`)) {
-                    const id = info.event.id
-                    const res = await fetch(`/api/reservas/${id}`, { method: 'DELETE' });
-                    if (res.ok) {
-                        info.event.remove();
-                        location.reload();
-                    } else {
-                        alert("Error al eliminar la reserva.");
+                if(!info.event.extendedProps.isPagada){
+                    if (confirm(`¿Eliminar la reserva de "${info.event.title}"?`)) {
+                        const id = info.event.id
+                        const res = await fetch(`/api/reservas/${id}`, { method: 'DELETE' });
+                        if (res.ok) {
+                            info.event.remove();
+                            location.reload();
+                        } else {
+                            alert("Error al eliminar la reserva.");
+                        }
                     }
+                } else {
+                    alert("Error, no se puede eliminar la reserva porque ya ha sido pagada.");
                 }
-            };
+            }
 
             // Botón Detalle
             const detalleBtn = document.createElement('button');
@@ -145,7 +149,9 @@ document.addEventListener('DOMContentLoaded', async function () {
                       Alimento: ${info.event.extendedProps.alimento}
                       Medicamento: ${info.event.extendedProps.medicamento}
                       Monto Total: ${info.event.extendedProps.montoTotal}
-                      Extra: ${info.event.extendedProps.extra}`);
+                      Extra: ${info.event.extendedProps.extra}
+                      Esta Pagada: ${info.event.extendedProps.isPagada}`)
+            
                 location.reload()
             };
 
@@ -186,7 +192,8 @@ document.addEventListener('DOMContentLoaded', async function () {
                 alimento: reserva.alimento,
                 medicamento: reserva.medicamento,    
                 extra: reserva.extras,
-                montoTotal: reserva.montoTotal  
+                montoTotal: reserva.montoTotal,
+                isPagada: reserva.isPagada  
             }
         });
     });
@@ -199,7 +206,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         const medicamento = document.getElementById('medicamentos').value;
         const extras = document.getElementById('extras').value;
         const tipoReserva = document.getElementById('tipoReserva').value
-        const montoTotal = (calcularDiferenciaDias(selectedInfo.startStr, selectedInfo.endStr) * 100000)
+        const montoTotal = (calcularDiferenciaDias(selectedInfo.startStr, selectedInfo.endStr) * 20000)
         const newEvent = {
             alimento,
             medicamento,
@@ -219,7 +226,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         calendar.addEvent({
             id: savedEvent._id,
-            title: `Reserva: ${savedEvent.id_usuario.nombre}`,
+            title: `Reserva de: ${savedEvent.id_usuario.nombre}`,
             start: savedEvent.fecha_desde,
             end: savedEvent.fecha_hasta,
             allDay: true,
@@ -227,7 +234,8 @@ document.addEventListener('DOMContentLoaded', async function () {
                 alimento: savedEvent.alimento,
                 medicamento: savedEvent.medicamento,    
                 extra: savedEvent.extras,
-                montoTotal: montoTotal  
+                montoTotal: montoTotal,
+                isPagada: savedEvent.isPagada 
             }
         });
         
