@@ -66,9 +66,16 @@ document.addEventListener('DOMContentLoaded', async function () {
        }, 200);
    }
 document.body.appendChild(menuEvento);
+function calcularDiferenciaDias(fecha1, fecha2) {
+    const date1 = new Date(fecha1);
+    const date2 = new Date(fecha2);
 
-    
-        document.body.appendChild(menuEvento);
+    // Calcula la diferencia en milisegundos
+    const diferenciaTiempo = Math.abs(date2 - date1);
+
+    // Convierte la diferencia a días
+    return Math.ceil(diferenciaTiempo / (1000 * 60 * 60 * 24));
+}
 
 
     // Función para cerrar el menú
@@ -184,12 +191,13 @@ document.body.appendChild(menuEvento);
         const alimento = document.getElementById('alimento').value;
         const medicamento = document.getElementById('medicamentos').value;
         const extras = document.getElementById('extras').value;
-        const tipoReserva = document.getElementById('tipoReserva').value;
+        const tipoReserva = document.getElementById('tipoReserva').value
+        const montoTotal = (calcularDiferenciaDias(selectedInfo.startStr, selectedInfo.endStr) * 100000)
         const newEvent = {
             alimento,
             medicamento,
             extras,
-            montoTotal: 100000,
+            montoTotal,
             id_animal: tipoReserva,
             fecha_desde: selectedInfo.startStr,
             fecha_hasta: selectedInfo.endStr,
