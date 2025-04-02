@@ -16,8 +16,9 @@ Esta aplicación permite gestionar una guardería de mascotas, facilitando la re
 - **Handlebars** para plantillas  
 - **Bootstrap** para estilos  
 
-### 📅 Integración con Calendario  
-- **Cronofy API** para gestión de reservas  
+### 📅 Integración con Calendario y Pagos
+- **Cronofy API** para gestión de reservas en un calendario
+- **Mercado Pago API** para gestión de pagos de reservas  
 
 ---
 
