@@ -2,42 +2,46 @@
 <html lang="es">
 
 {{> head}}
-{{#if (eq tipoUsuario 'admin')}}
-{{> headerAdmin}} 
-{{else}}
-{{> headerUser}}
-{{/if}}
-<body >
 
-    <!-- Contenedor principal -->
-    <div class="container mt-5">
-        <!-- Sección de Buscar -->
-        <div class="search-section card p-4 mb-4 shadow-sm">
-            <h2 class="text-center">Buscar por Nombre</h2>
-            <form id="buscarNombreAnimal" class="d-flex flex-column align-items-center">
-                <label for="buscarNombreAnimal" class="form-label">Nombre del Animal o Dueño:</label>
-                <input type="text" id="nombreDelAnimal" name="nombreAnimal" class="form-control w-50"
-                    placeholder="Nombre del animal">
-                <button type="submit" class="btn btn-primary mt-3 btn-buscarNombreAnimal">Buscar</button>
-            </form>
-        </div>
-
-        <!-- Sección de animales -->
-        <section class="libros-section">
-            {{#each animales}}
-            <div class="card p-4 mb-3 shadow-sm">
-                <h5 class="card-title"><i class="fas fa-paw"></i> Animal: {{nombre}}</h5>
-                <p><strong>Nombre dueño:</strong> {{idUsuario.nombre}}</p>
-                <p><strong>Mail:</strong> {{idUsuario.email}}</p>
-                <p><strong>Tipo Animal:</strong> {{idTipoAnimal.tipo}}</p>
+<body>
+    {{#if (eq tipoUsuario 'admin')}}
+    {{> headerAdmin}}
+    {{else}}
+    {{> headerUser}}
+    {{/if}}
+    <div class="main-content">
+        <!-- Contenedor principal -->
+        <div class="container mt-5">
+            <!-- Sección de Buscar -->
+            <div class="search-section card p-4 mb-4 shadow-sm">
+                <h2 class="text-center">Buscar por Nombre</h2>
+                <form id="buscarNombreAnimal" class="d-flex flex-column align-items-center">
+                    <label for="buscarNombreAnimal" class="form-label">Nombre del Animal o Dueño:</label>
+                    <input type="text" id="nombreDelAnimal" name="nombreAnimal" class="form-control w-50"
+                        placeholder="Nombre del animal">
+                    <button type="submit" class="btn btn-primary mt-3 btn-buscarNombreAnimal">Buscar</button>
+                </form>
             </div>
-            {{/each}}
-        </section>
+
+            <!-- Sección de animales -->
+            <section class="libros-section">
+                {{#each animales}}
+                <div class="card p-4 mb-3 shadow-sm">
+                    <h5 class="card-title"><i class="fas fa-paw"></i> Animal: {{nombre}}</h5>
+                    <p><strong>Nombre dueño:</strong> {{idUsuario.nombre}}</p>
+                    <p><strong>Mail:</strong> {{idUsuario.email}}</p>
+                    <p><strong>Tipo Animal:</strong> {{idTipoAnimal.tipo}}</p>
+                </div>
+                {{/each}}
+            </section>
+        </div>
     </div>
 
-    <script src="/js/listaAnimales.js"></script>
-    <script src="/js/header.js"></script>
 
+    {{> footer}}
 </body>
 
 </html>
+
+<script src="/js/listaAnimales.js"></script>
+<script src="/js/header.js"></script>

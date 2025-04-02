@@ -31,9 +31,20 @@ document.getElementById('formCAS').addEventListener('submit', async function (ev
         // Obtener el token de la respuesta
         const { token, idUsuario, tipoUsuario } = await response.json()
 
-        // Guardar el token en el localStorage
-        console.log(tipoUsuario)
-        
+
+        if (localStorage.getItem('token') != null) {
+            localStorage.removeItem('token')
+        }
+        if (localStorage.getItem('email') != null) {
+            localStorage.removeItem('email')
+        }
+        if (localStorage.getItem('tipoUsuario') != null) {
+            localStorage.removeItem('tipoUsuario')
+        }
+        if (localStorage.getItem('idUsuario') != null) {
+            localStorage.removeItem('idUsuario')
+        }
+
         localStorage.setItem('token', token)
         localStorage.setItem('email', email)
         localStorage.setItem('tipoUsuario', tipoUsuario)

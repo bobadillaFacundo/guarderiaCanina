@@ -3,13 +3,15 @@
 
 {{> head}}
 
+<body >
+  
 {{#if (eq tipoUsuario 'admin')}}
 {{> headerAdmin}} 
 {{else}}
 {{> headerUser}}
 {{/if}}
-<body >
-
+  <div class="main-content">
+    
     <!-- Contenedor principal -->
     <div class="container mt-5">
 
@@ -26,9 +28,11 @@
         </section>
 
     </div>
+  </div>
+  {{> footer}}
 
-    <script src="/js/listadoTipos.js"></script>
 </body>
 <script src="/js/header.js"></script>
+    <script src="/js/listadoTipos.js"></script>
 
 </html>

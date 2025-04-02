@@ -1,16 +1,17 @@
 
 document.addEventListener("DOMContentLoaded", function () {
     // Asignar eventos a los botones correctamente
-    document.getElementById("btnAdopciones").addEventListener("click", function () {
+    document.getElementById("btnAdopciones")?.addEventListener("click", function () {
         const tipoUsuario = localStorage.getItem('tipoUsuario')
         window.location.href = `/api/animales/adopcionAnimal/${tipoUsuario}/`
     });
-    document.getElementById("btnIniciarSesion").addEventListener("click", function () {
+    
+    document.getElementById("btnIniciarSesion")?.addEventListener("click", function () {
         const tipoUsuario = localStorage.getItem('tipoUsuario')
         window.location.href = `/api/login/principal/${tipoUsuario}`
     });
 
-    document.getElementById("btnCrearAnimales").addEventListener("click", function () {
+    document.getElementById("btnCrearAnimales")?.addEventListener("click", function () {
         try {
             const tipoUsuario = localStorage.getItem('tipoUsuario')
             window.location.href = `/api/animales/altaAnimal/${tipoUsuario}/`
@@ -19,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    document.getElementById("btnReservar").addEventListener("click", function () {
+    document.getElementById("btnReservar")?.addEventListener("click", function () {
         try {
             const tipoUsuario = localStorage.getItem('tipoUsuario')
             const idUsuario = localStorage.getItem("idUsuario");
@@ -29,22 +30,18 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    document.getElementById("btnPaquetes").addEventListener("click", function () {
+    document.getElementById("btnPaquetes")?.addEventListener("click", function () {
         console.log("Paquetes clickeado"); // Agrega funcionalidad si es necesario
     });
 
-    document.getElementById("btnAnimales").addEventListener("click", function () {
+    document.getElementById("btnAnimales")?.addEventListener("click", function () {
         const tipoUsuario = localStorage.getItem('tipoUsuario')
         window.location.href = `/api/animales/${tipoUsuario}/`
     });
 
-    document.getElementById("btnPerfil").addEventListener("click", function () {
+    document.getElementById("btnPerfil")?.addEventListener("click", function () {
         const idPerfil = localStorage.getItem("idUsuario");
         const tipoUsuario = localStorage.getItem('tipoUsuario')
-        const result = {
-            id: idPerfil,
-            tipo: tipoUsuario
-        }
         if (idPerfil) {
             window.location.href = `/api/usuarios/perfil/${idPerfil}/${tipoUsuario}`      
           } else {
@@ -53,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     
-    document.getElementById("btnCerrarSesion").addEventListener("click", function () {
+    document.getElementById("btnCerrarSesion")?.addEventListener("click", function () {
         localStorage.removeItem('token')
         localStorage.removeItem('email')
         localStorage.removeItem('idUsuario')
@@ -62,9 +59,6 @@ document.addEventListener("DOMContentLoaded", function () {
         
         window.location.href = "/api/login/"
     })  
-    
-    
-    
     
     // Manejo del dropdown
     const dropdownToggle = document.querySelector(".dropbtn");
@@ -82,5 +76,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 dropdownMenu.classList.remove("show");
             }
         });
+        
     }
 });
