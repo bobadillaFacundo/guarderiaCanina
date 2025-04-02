@@ -9,9 +9,9 @@ export const calendario = (async(req, res) => {
         const {tipo} = req.params
         let animales = null
         if(tipo==="admin"){
-             animales = await animalesModel.find().populate('idTipoAnimal', 'tipo')            
+             animales = await animalesModel.find().populate('idTipoAnimal', 'tipo').populate('idUsuario', 'nombre email')           
         } else {
-             animales = await animalesModel.find({idUsuario:id}).populate('idTipoAnimal', 'tipo')        
+             animales = await animalesModel.find({idUsuario:id}).populate('idTipoAnimal', 'tipo').populate('idUsuario', 'nombre email')          
         }
         return res.render('calendario',{animales:animales, tipoUsuario:tipo})
     } catch (error) {

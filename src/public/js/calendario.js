@@ -18,64 +18,64 @@ document.addEventListener('DOMContentLoaded', async function () {
     overlay.style.display = 'none';
     document.body.appendChild(overlay);
 
-   // Crear el menú de eventos
-   const menuEvento = document.createElement('div');
-   menuEvento.id = 'menuEvento';
-   Object.assign(menuEvento.style, {
-       position: 'absolute',
-       top: '-9999px',  // Inicialmente fuera de la pantalla
-       left: '-9999px', // Evita que aparezca en (0,0)
-       display: 'none',
-       background: '#ffffff',
-       border: '1px solid #ddd',
-       padding: '12px',
-       boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.15)',
-       zIndex: '10000',
-       pointerEvents: 'auto',
-       borderRadius: '8px',
-       fontFamily: 'Arial, sans-serif',
-       fontSize: '14px',
-       color: '#333',
-       minWidth: '200px',
-       opacity: '0',
-       transform: 'scale(0.95)',
-       transition: 'opacity 0.2s ease-in-out, transform 0.2s ease-in-out'
-   });
-   
-   document.body.appendChild(menuEvento);
-   
-   // Función para mostrar el menú en la posición del clic
-   function mostrarMenu(x, y) {
-       menuEvento.style.left = `${x}px`;
-       menuEvento.style.top = `${y}px`;
-       menuEvento.style.display = 'block'; // Se hace visible
-       requestAnimationFrame(() => {
-           menuEvento.style.opacity = '1';
-           menuEvento.style.transform = 'scale(1)';
-       });
-   }
-   
-   // Función para ocultar el menú con animación
-   function ocultarMenu() {
-       menuEvento.style.opacity = '0';
-       menuEvento.style.transform = 'scale(0.95)';
-       setTimeout(() => {
-           menuEvento.style.display = 'none';
-           menuEvento.style.top = '-9999px';  // Lo volvemos a ocultar fuera de la pantalla
-           menuEvento.style.left = '-9999px';
-       }, 200);
-   }
-document.body.appendChild(menuEvento);
-function calcularDiferenciaDias(fecha1, fecha2) {
-    const date1 = new Date(fecha1);
-    const date2 = new Date(fecha2);
+    // Crear el menú de eventos
+    const menuEvento = document.createElement('div');
+    menuEvento.id = 'menuEvento';
+    Object.assign(menuEvento.style, {
+        position: 'absolute',
+        top: '-9999px',  // Inicialmente fuera de la pantalla
+        left: '-9999px', // Evita que aparezca en (0,0)
+        display: 'none',
+        background: '#ffffff',
+        border: '1px solid #ddd',
+        padding: '12px',
+        boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.15)',
+        zIndex: '10000',
+        pointerEvents: 'auto',
+        borderRadius: '8px',
+        fontFamily: 'Arial, sans-serif',
+        fontSize: '14px',
+        color: '#333',
+        minWidth: '200px',
+        opacity: '0',
+        transform: 'scale(0.95)',
+        transition: 'opacity 0.2s ease-in-out, transform 0.2s ease-in-out'
+    });
 
-    // Calcula la diferencia en milisegundos
-    const diferenciaTiempo = Math.abs(date2 - date1);
+    document.body.appendChild(menuEvento);
 
-    // Convierte la diferencia a días
-    return Math.ceil(diferenciaTiempo / (1000 * 60 * 60 * 24));
-}
+    // Función para mostrar el menú en la posición del clic
+    function mostrarMenu(x, y) {
+        menuEvento.style.left = `${x}px`;
+        menuEvento.style.top = `${y}px`;
+        menuEvento.style.display = 'block'; // Se hace visible
+        requestAnimationFrame(() => {
+            menuEvento.style.opacity = '1';
+            menuEvento.style.transform = 'scale(1)';
+        });
+    }
+
+    // Función para ocultar el menú con animación
+    function ocultarMenu() {
+        menuEvento.style.opacity = '0';
+        menuEvento.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            menuEvento.style.display = 'none';
+            menuEvento.style.top = '-9999px';  // Lo volvemos a ocultar fuera de la pantalla
+            menuEvento.style.left = '-9999px';
+        }, 200);
+    }
+    document.body.appendChild(menuEvento);
+    function calcularDiferenciaDias(fecha1, fecha2) {
+        const date1 = new Date(fecha1);
+        const date2 = new Date(fecha2);
+
+        // Calcula la diferencia en milisegundos
+        const diferenciaTiempo = Math.abs(date2 - date1);
+
+        // Convierte la diferencia a días
+        return Math.ceil(diferenciaTiempo / (1000 * 60 * 60 * 24));
+    }
 
 
     // Función para cerrar el menú
@@ -123,8 +123,8 @@ function calcularDiferenciaDias(fecha1, fecha2) {
             const eliminarBtn = document.createElement('button');
             eliminarBtn.textContent = 'Eliminar';
             eliminarBtn.onclick = async function () {
-                if (confirm(`¿Eliminar la reserva "${info.event.title}"?`)) {
-                    const id = info.event.title.match(/\d+[a-zA-Z]+|\d+/g).join('');
+                if (confirm(`¿Eliminar la reserva de "${info.event.title}"?`)) {
+                    const id = info.event.id
                     const res = await fetch(`/api/reservas/${id}`, { method: 'DELETE' });
                     if (res.ok) {
                         info.event.remove();
@@ -142,10 +142,10 @@ function calcularDiferenciaDias(fecha1, fecha2) {
                 alert(`Detalles de la reserva: ${info.event.title} 
                       Fecha de inicio: ${info.event.start} 
                       Fecha de fin: ${info.event.end}
-                      Alimento: ${info.event.alimento}
-                      Medicamento: ${info.event.medicamento}
-                      Monto Total: ${info.event.montoTotal}
-                      Extra: ${info.event.extra}`);
+                      Alimento: ${info.event.extendedProps.alimento}
+                      Medicamento: ${info.event.extendedProps.medicamento}
+                      Monto Total: ${info.event.extendedProps.montoTotal}
+                      Extra: ${info.event.extendedProps.extra}`);
                 location.reload()
             };
 
@@ -154,8 +154,8 @@ function calcularDiferenciaDias(fecha1, fecha2) {
             pagarBtn.textContent = 'Pagar';
             pagarBtn.onclick = function () {
                 const tipo = localStorage.getItem('tipoUsuario');
-                const reserva = info.event.title.match(/\d+[a-zA-Z]+|\d+/g).join('');
-                    window.location.href = `/api/reservas/pagar/${tipo}/${reserva}`;
+                const reserva = info.event.id
+                window.location.href = `/api/reservas/pagar/${tipo}/${reserva}`;
             };
 
             // Agregar botones al menú
@@ -177,10 +177,17 @@ function calcularDiferenciaDias(fecha1, fecha2) {
     const storedEvents = await fetchReservas();
     storedEvents.reservas.forEach(reserva => {
         calendar.addEvent({
-            title: `Reserva: ${reserva._id}`,
+            id: reserva._id,
+            title: `Reserva: ${reserva.id_usuario.nombre}`,
             start: reserva.fecha_desde,
             end: reserva.fecha_hasta,
             allDay: true,
+            extendedProps : {
+                alimento: reserva.alimento,
+                medicamento: reserva.medicamento,    
+                extra: reserva.extras,
+                montoTotal: reserva.montoTotal  
+            }
         });
     });
 
@@ -209,11 +216,23 @@ function calcularDiferenciaDias(fecha1, fecha2) {
             body: JSON.stringify({ newEvent })
         });
         const savedEvent = await res.json();
+
+        calendar.addEvent({
+            id: savedEvent._id,
+            title: `Reserva: ${savedEvent.id_usuario.nombre}`,
+            start: savedEvent.fecha_desde,
+            end: savedEvent.fecha_hasta,
+            allDay: true,
+            extendedProps : {
+                alimento: savedEvent.alimento,
+                medicamento: savedEvent.medicamento,    
+                extra: savedEvent.extras,
+                montoTotal: montoTotal  
+            }
+        });
         
-        calendar.addEvent(savedEvent);
         reservaModal.style.display = 'none';
         modalAbierto = false;
-        location.reload();
     });
 
     // Cerrar modal
