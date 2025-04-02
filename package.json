@@ -5,7 +5,7 @@
   "type": "module",
   "main": "app.js",
   "scripts": {
-    "test": "node app.js"
+    "start": "node --watch  src/app.js"
   },
   "author": "facundo bobadilla",
   "license": "ISC",

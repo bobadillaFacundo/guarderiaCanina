@@ -77,3 +77,15 @@ export const eliminarReserva = async (req, res) => {
         console.log(error)
     }
 }
+
+export const pagarMenu = async (req, res) => {
+    try {
+        const {tipo} = req.params
+        const reserva = req.params.reserva
+        const reservaId = new moongose.Types.ObjectId(reserva)
+        const nuevaReserva = await reservasModel.findById(reservaId)
+        return res.render('mercadoPago', { tipoUsuario: tipo, reserva:nuevaReserva })
+    } catch (error) {
+        console.log(error)
+    }
+}

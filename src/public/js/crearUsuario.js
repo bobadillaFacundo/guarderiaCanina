@@ -51,7 +51,7 @@ document.getElementById('formC').addEventListener('submit', async function (even
         console.log('Error al realizar la solicitud:', err)
     }
 })
-document.querySelector('.buttonLoginUsuario').addEventListener('click', async () => {
+document.querySelector('.btn-volver').addEventListener('click', async () => {
   
     window.location.href = `/api/login/`  
 })

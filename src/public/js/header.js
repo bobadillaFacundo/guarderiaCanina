@@ -38,11 +38,6 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href = `/api/animales/${tipoUsuario}/`
     });
 
-    document.getElementById("btnTipos").addEventListener("click", function () {
-        const tipoUsuario = localStorage.getItem('tipoUsuario')
-        window.location.href = `/api/tipos/listado/${tipoUsuario}/`
-    });
-
     document.getElementById("btnPerfil").addEventListener("click", function () {
         const idPerfil = localStorage.getItem("idUsuario");
         const tipoUsuario = localStorage.getItem('tipoUsuario')
@@ -57,11 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    document.getElementById("btnCrearTipos").addEventListener("click", function () {
-        const tipoUsuario = localStorage.getItem('tipoUsuario')
-        window.location.href = `/api/tipos/${tipoUsuario}/`
-    });
-
+    
     document.getElementById("btnCerrarSesion").addEventListener("click", function () {
         localStorage.removeItem('token')
         localStorage.removeItem('email')

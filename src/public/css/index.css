@@ -1,4 +1,3 @@
-
 /* Navbar */
 .navbar {
   border-bottom: 2px solid #ddd;
@@ -116,7 +115,7 @@
   min-width: 150px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
-  z-index: 10; /* Ajuste para evitar problemas de superposición */
+  z-index: 10;
 }
 
 .dropdown-content a {
@@ -147,16 +146,16 @@
 /* Header */
 header {
   display: flex;
-  justify-content: center; /* Centra el contenido horizontalmente */
-  align-items: center; /* Centra el contenido verticalmente */
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  width: 100%; /* Asegura que ocupe el ancho completo */
+  width: 100%;
 }
 
 .nav {
   display: flex;
-  justify-content: center; /* Centra los elementos dentro del nav */
-  gap: 15px; /* Espaciado entre los elementos */
+  justify-content: center;
+  gap: 15px;
 }
 
 /* Asegura que el body ocupe toda la pantalla */
@@ -169,17 +168,17 @@ html, body {
 
 /* Hace que el header tenga un tamaño fijo */
 header {
-  flex: 0 0 60px; /* Altura fija de 60px */
+  flex: 0 0 60px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f8f9fa; /* O el color que prefieras */
+  background-color: #f8f9fa;
   border-bottom: 2px solid #ddd;
 }
 
 /* Hace que el contenido ocupe el espacio restante */
 .main-content {
-  flex: 1; /* Hace que el contenido ocupe todo el espacio disponible */
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -188,7 +187,7 @@ header {
 
 /* Ajusta el footer para que se mantenga abajo */
 footer {
-  flex: 0 0 50px; /* Altura fija del footer */
+  flex: 0 0 50px;
   text-align: center;
   background-color: #f8f9fa;
   border-top: 2px solid #ddd;
@@ -197,7 +196,7 @@ footer {
 
 /* Estilos para el modal */
 #reservaModal {
-  display: none; /* Oculto por defecto */
+  display: none;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -206,22 +205,22 @@ footer {
   padding: 20px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
   border-radius: 5px;
-  width: 350px; /* Ajuste opcional del ancho */
-  max-width: 90%; /* Evita que sea demasiado ancho en pantallas pequeñas */
+  width: 350px;
+  max-width: 90%;
   text-align: center;
-  z-index: 1050; /* Asegura que esté sobre otros elementos */
+  z-index: 1050;
 }
 
 /* Fondo oscurecido cuando el modal está activo */
 .modal-overlay {
-  display: none; /* Oculto por defecto */
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Efecto de oscurecimiento */
-  z-index: 1049; /* Debajo del modal */
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1049;
 }
 
 /* Clase para mostrar el modal */
@@ -231,7 +230,7 @@ footer {
 
 #myTabs {
   display: flex;
-  justify-content: flex-start; /* Alinea todo a la izquierda */
+  justify-content: flex-start;
 }
 
 #logo {
@@ -240,35 +239,41 @@ footer {
 }
 
 #logo img {
-  margin-right: 10px; /* Espacio entre el logo y el botón */
+  margin-right: 10px;
 }
+
 @media (max-width: 768px) {
   .navbar .nav {
-    flex-direction: column; /* Coloca los elementos en una columna */
+    flex-direction: column;
     gap: 10px;
   }
 
   .container {
-    max-width: 100%; /* Asegura que el contenido se ajuste a pantallas pequeñas */
+    max-width: 100%;
   }
 }
-button, .nav-link, .dropdown-btn, .carousel {
-  outline: none !important;
-  border: none !important;
-  box-shadow: none !important;
+
+#menuEvento {
+  position: absolute !important;
+  background: white !important;
+  border: 1px solid #ccc !important;
+  padding: 10px !important;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2) !important;
+  z-index: 999999 !important;
+  display: block !important; /* Asegura que no esté oculto */
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+#menuEvento button {
+  display: block;
+  width: 100%;
+  margin-bottom: 5px;
+  padding: 5px;
+  background: #f8f9fa;
+  border: none;
+  cursor: pointer;
 }
 
-button:hover, .nav-link:hover, .dropdown-btn:hover, 
-button:focus, .nav-link:focus, .dropdown-btn:focus,
-button:active, .nav-link:active, .dropdown-btn:active,
-.carousel:hover, .carousel:focus, .carousel:active ,.carousel-control-prev-icon, .carousel-control-next-icon {
-  outline: none !important;
-  border: none !important;
-  box-shadow: none !important;
-}
-.carousel:focus,
-.carousel *:focus {
-  outline: none !important;
-  border: none !important;
-  box-shadow: none !important;
+#menuEvento button:hover {
+  background: #e2e6ea;
 }
