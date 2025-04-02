@@ -18,36 +18,64 @@ document.addEventListener('DOMContentLoaded', async function () {
     overlay.style.display = 'none';
     document.body.appendChild(overlay);
 
-    // Crear el menú de eventos
-    const menuEvento = document.createElement('div');
-    menuEvento.id = 'menuEvento';
-    menuEvento.style.position = 'absolute';
-    menuEvento.style.display = 'none';
-    menuEvento.style.background = 'white';
-    menuEvento.style.border = '1px solid #ccc';
-    menuEvento.style.padding = '10px';
-    menuEvento.style.boxShadow = '2px 2px 5px rgba(0,0,0,0.2)';
-    menuEvento.style.zIndex = '10000';
-    menuEvento.style.pointerEvents = 'auto';
-    
-    // Botón de cerrar el menú
-    const cerrarMenuBtn = document.createElement('button');
-    cerrarMenuBtn.textContent = 'Cerrar';
-    cerrarMenuBtn.style.display = 'block';
-    cerrarMenuBtn.style.marginTop = '10px';
-    cerrarMenuBtn.onclick = function () {
-        cerrarMenu();
-    };
+   // Crear el menú de eventos
+   const menuEvento = document.createElement('div');
+   menuEvento.id = 'menuEvento';
+   Object.assign(menuEvento.style, {
+       position: 'absolute',
+       top: '-9999px',  // Inicialmente fuera de la pantalla
+       left: '-9999px', // Evita que aparezca en (0,0)
+       display: 'none',
+       background: '#ffffff',
+       border: '1px solid #ddd',
+       padding: '12px',
+       boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.15)',
+       zIndex: '10000',
+       pointerEvents: 'auto',
+       borderRadius: '8px',
+       fontFamily: 'Arial, sans-serif',
+       fontSize: '14px',
+       color: '#333',
+       minWidth: '200px',
+       opacity: '0',
+       transform: 'scale(0.95)',
+       transition: 'opacity 0.2s ease-in-out, transform 0.2s ease-in-out'
+   });
+   
+   document.body.appendChild(menuEvento);
+   
+   // Función para mostrar el menú en la posición del clic
+   function mostrarMenu(x, y) {
+       menuEvento.style.left = `${x}px`;
+       menuEvento.style.top = `${y}px`;
+       menuEvento.style.display = 'block'; // Se hace visible
+       requestAnimationFrame(() => {
+           menuEvento.style.opacity = '1';
+           menuEvento.style.transform = 'scale(1)';
+       });
+   }
+   
+   // Función para ocultar el menú con animación
+   function ocultarMenu() {
+       menuEvento.style.opacity = '0';
+       menuEvento.style.transform = 'scale(0.95)';
+       setTimeout(() => {
+           menuEvento.style.display = 'none';
+           menuEvento.style.top = '-9999px';  // Lo volvemos a ocultar fuera de la pantalla
+           menuEvento.style.left = '-9999px';
+       }, 200);
+   }
+document.body.appendChild(menuEvento);
 
-    menuEvento.appendChild(cerrarMenuBtn);
-    document.body.appendChild(menuEvento);
+    
+        document.body.appendChild(menuEvento);
+
 
     // Función para cerrar el menú
     function cerrarMenu() {
         menuEvento.style.display = 'none';
         overlay.style.display = 'none';
         location.reload();
-
     }
 
     // Cargar reservas
@@ -104,7 +132,13 @@ document.addEventListener('DOMContentLoaded', async function () {
             const detalleBtn = document.createElement('button');
             detalleBtn.textContent = 'Detalle';
             detalleBtn.onclick = function () {
-                alert(`Detalles de la reserva: ${info.event.title}&#10;Fecha de inicio: ${info.event.start}&#10;Fecha de fin: ${info.event.end}`);
+                alert(`Detalles de la reserva: ${info.event.title} 
+                      Fecha de inicio: ${info.event.start} 
+                      Fecha de fin: ${info.event.end}
+                      Alimento: ${info.event.alimento}
+                      Medicamento: ${info.event.medicamento}
+                      Monto Total: ${info.event.montoTotal}
+                      Extra: ${info.event.extra}`);
                 location.reload()
             };
 
@@ -121,7 +155,6 @@ document.addEventListener('DOMContentLoaded', async function () {
             menuEvento.appendChild(eliminarBtn);
             menuEvento.appendChild(detalleBtn);
             menuEvento.appendChild(pagarBtn);
-            menuEvento.appendChild(cerrarMenuBtn); // Asegurar que el botón cerrar esté
 
             // Posicionar y mostrar menú
             menuEvento.style.left = `${info.jsEvent.clientX + window.scrollX}px`;
@@ -168,6 +201,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             body: JSON.stringify({ newEvent })
         });
         const savedEvent = await res.json();
+        
         calendar.addEvent(savedEvent);
         reservaModal.style.display = 'none';
         modalAbierto = false;
