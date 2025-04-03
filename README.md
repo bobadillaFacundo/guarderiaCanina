@@ -55,10 +55,14 @@ Esta aplicación permite gestionar una guardería de mascotas, facilitando la re
 Es necesario conectar la base de datos y crear un usuario administrador manualmente. En la carpeta `models`, encontrarás la plantilla de usuario. Asegúrate de que el campo `tipo` sea `admin`. Los usuarios registrados desde la página serán creados como usuarios comunes.
 
 ## 📸 Capturas de Pantalla
-<br> Gestion de compras de libros
-![428359573-3ff5f126-b0db-4659-97d3-7e5332a3ec3d](https://github.com/user-attachments/assets/06a9a609-06b8-4f8d-b0e3-64fe4834bf0c)
+
+
 <br> Gestion de guarderia y adopcion de animales
 ![Captura de pantalla 2025-04-01 122358](https://github.com/user-attachments/assets/ea56a21e-ec2c-458d-938d-f076086be134)
+![image](https://github.com/user-attachments/assets/0b7dfc48-7ea2-41b3-a7ba-adb8a397db97)
+![image](https://github.com/user-attachments/assets/6e3a22eb-74fd-4173-b25f-4e7b59a31a42)
+![image](https://github.com/user-attachments/assets/d6e18373-3552-4fb0-b102-4d95fca4322f)
+![image](https://github.com/user-attachments/assets/f6744db7-65aa-4505-82e0-86487608cf13)
 
 ## 📌 Notas Adicionales
 - Se recomienda utilizar **Node.js v18+** para mejor compatibilidad.
